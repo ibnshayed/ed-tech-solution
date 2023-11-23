@@ -32,6 +32,8 @@ $ yarn run test:e2e
 ```
 
 ## Api Documentation
+## Open Api (Swagger)
+- 
 
 ### Course
 

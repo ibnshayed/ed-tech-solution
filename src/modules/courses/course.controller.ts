@@ -2,7 +2,9 @@ import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { CourseService } from './course.service';
 import { CreateCourseDto } from './dtos/create-course.dto';
 import { GetCoursesQueryDto } from './dtos/get-courses-query.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('course')
 @Controller('course')
 export class CourseController {
   constructor(private readonly courseService: CourseService) {}

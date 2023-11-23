@@ -4,22 +4,22 @@ export class GetCoursesQueryDto {
   @Min(1)
   @IsNumber()
   @IsOptional()
-  page: number;
+  page?: number;
 
   @Min(1)
   @IsNumber()
   @IsOptional()
-  limit: number;
+  limit?: number;
 
   @IsString()
   @IsOptional()
-  instructor: string;
+  instructor?: string;
 
   @IsNumber()
   @IsOptional()
-  duration: number;
+  duration?: number;
 
   @IsNumber()
   @IsOptional()
-  price: number;
+  price?: number;
 }
