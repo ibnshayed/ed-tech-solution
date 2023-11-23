@@ -1,8 +1,9 @@
 import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
+import { Course } from './../../repository';
 import { CourseService } from './course.service';
 import { CreateCourseDto } from './dtos/create-course.dto';
 import { GetCoursesQueryDto } from './dtos/get-courses-query.dto';
-import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('course')
 @Controller('course')
@@ -20,7 +21,7 @@ export class CourseController {
   }
 
   @Get(':id')
-  getCourseById(@Param('id') id: string) {
+  getCourseById(@Param('id') id: string): Promise<Course> {
     return this.courseService.getCourseById(id);
   }
 }

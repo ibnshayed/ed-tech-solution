@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, PaginateModel } from 'mongoose';
 import { Course } from '../../repository';
@@ -43,8 +43,12 @@ export class CourseService {
     });
   }
 
-  getCourseById(id: string) {
-    return this.courseModel.findById(id);
+  async getCourseById(id: string) {
+    const course = await this.courseModel.findById(id);
+    if (!course) {
+      throw new HttpException('Course not Found!', HttpStatus.BAD_REQUEST);
+    }
+    return course;
   }
 
   courseEnrollmentIncrease(id) {

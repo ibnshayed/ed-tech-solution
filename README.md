@@ -5,14 +5,14 @@
 ## Installation
 
 ```bash
-$ yarn install
+$ npm install or yarn install
 ```
 
 ## Running the app locally
 
 ```bash
 # development
-$ yarn run dev
+$ npm run dev or yarn run dev
 ```
 
 ## Running the app with docker compose
@@ -30,16 +30,16 @@ $ docker compose up -d
 # e2e tests locally
 $ yarn test:e2e
 # e2e tests with docker
-$ docker exec ed-tech-solution-node-app-1 npm run test:e2e
-(example)
 $ docker exec <container_name> npm run test:e2e
+(example)
+$ docker exec ed-tech-solution-node-app-1 npm run test:e2e
 ```
 
 ## Api Documentation
 
 ## Open Api (Swagger)
 
--
+- http://localhost:3000/api
 
 ### Course
 
