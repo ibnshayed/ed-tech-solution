@@ -1,6 +1,4 @@
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## First of all clone the git repo and then follow the bellow instructions to run the application.
 
 ## Installation
 
