@@ -48,7 +48,7 @@ query = {
 };
 ```
 
-2. Get Course by id - /GET http://localhost:3000/api/v1/course/all-courses
+2. Get Course by id - /GET http://localhost:3000/api/v1/course/:id
 3. Create a course - /POST http://localhost:3000/api/v1/course/create
 ```javascript
 // request body takes
