@@ -6,7 +6,9 @@ import * as paginate from 'mongoose-paginate-v2';
 @Module({
   imports: [
     MongooseModule.forRoot(
-      'mongodb://root:root@mongo:27017/testdb?authSource=admin',
+      process.env.NODE_ENV === 'docker'
+        ? 'mongodb://root:root@mongo:27017/testdb?authSource=admin'
+        : 'mongodb://localhost/testdb?authSource=admin',
       {
         connectionFactory: (connection) => {
           const logger = new Logger();

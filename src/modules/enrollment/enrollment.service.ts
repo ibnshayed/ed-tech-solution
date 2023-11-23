@@ -18,7 +18,7 @@ export class EnrollmentService {
     const course = await this.courseService.getCourseById(courseId);
 
     if (!course) {
-      throw new HttpException('Bad Request', HttpStatus.BAD_REQUEST);
+      throw new HttpException('Course not Found!', HttpStatus.BAD_REQUEST);
     }
 
     const newEnrollment = this.enrollmentModel.create({

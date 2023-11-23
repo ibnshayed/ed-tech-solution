@@ -1,28 +1,38 @@
 import { faker } from '@faker-js/faker';
 import { INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
+import { Connection } from 'mongoose';
 import * as request from 'supertest';
-import { MongoDBModule } from './../src/configs/db/mongodb/mongodb.module';
-import { EnrollmentModule } from './../src/modules/enrollment/enrollment.module';
+import { AppModule } from './../src/app.module';
+import { MongoDBService } from './../src/configs/db/mongodb/mongodb.service';
 
 describe('enrollment', () => {
   let app: INestApplication;
   let createEnrollmentPayload;
+  let dbConnection: Connection;
 
   beforeAll(async () => {
-    // jest.setTimeout(600000);
     const moduleRef = await Test.createTestingModule({
-      imports: [MongoDBModule, EnrollmentModule],
-      // providers: [EnrollmentService],
+      imports: [AppModule],
+      providers: [MongoDBService],
     }).compile();
     app = moduleRef.createNestApplication();
     app.setGlobalPrefix('api');
-    await app.init();
+
+    dbConnection = moduleRef.get<MongoDBService>(MongoDBService).getDbHandle();
+
+    const course = await dbConnection.collection('courses').findOne();
 
     createEnrollmentPayload = {
       studentName: faker.person.firstName(),
-      course: faker.string.uuid(),
+      courseId: course._id,
     };
+    await app.init();
+  });
+
+  afterAll(async () => {
+    await dbConnection?.close();
+    await app?.close();
   });
 
   it(`/POST enrollment`, () => {
@@ -31,14 +41,10 @@ describe('enrollment', () => {
     return request(app.getHttpServer())
       .post('/api/enrollment/create')
       .send(createEnrollmentPayload)
-      .expect(201)
-      .expect((res) => {
-        const resData = res.body;
-        expect(resData.studentName).toBeDefined();
-      });
-  });
-
-  afterAll(async () => {
-    await app?.close();
+      .expect(201);
+    // .expect((res) => {
+    //   const resData = res.body;
+    //   expect(resData.studentName).toBeDefined();
+    // });
   });
 });

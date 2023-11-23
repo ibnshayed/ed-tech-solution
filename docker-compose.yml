@@ -9,6 +9,7 @@ services:
       - /app/node_modules
     environment:
       - PORT=3000
+      - NODE_ENV=docker
 
   mongo:
     image: mongo

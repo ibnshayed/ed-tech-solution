@@ -14,6 +14,7 @@ $ yarn install
 # development
 $ yarn run dev
 ```
+
 ## Running the app with docker compose
 
 ```bash
@@ -26,14 +27,19 @@ $ docker compose up -d
 ## Test
 
 ```bash
-
-# e2e tests
-$ yarn run test:e2e
+# e2e tests locally
+$ yarn test:e2e
+# e2e tests with docker
+$ docker exec ed-tech-solution-node-app-1 npm run test:e2e
+(example)
+$ docker exec <container_name> npm run test:e2e
 ```
 
 ## Api Documentation
+
 ## Open Api (Swagger)
-- 
+
+-
 
 ### Course
 
@@ -52,6 +58,7 @@ query = {
 
 2. Get Course by id - /GET http://localhost:3000/api/v1/course/:id
 3. Create a course - /POST http://localhost:3000/api/v1/course/create
+
 ```javascript
 // request body takes
 body = {
@@ -62,6 +69,7 @@ body = {
   price: '100',
 };
 ```
+
 ### Enrollment
 
 1. create an enrollment if course is valid - http://localhost:3000/api/v1/enrollment/create
@@ -73,5 +81,3 @@ body = {
   courseId: '655e4273ab324a9e70ea9342',
 };
 ```
-
-
