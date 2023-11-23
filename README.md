@@ -25,7 +25,7 @@ $ docker compose up -d
 ## Test
 
 ```bash
-# e2e tests locally
+# e2e tests locally (you need to have mongodb locally)
 $ yarn test:e2e
 # e2e tests with docker
 $ docker exec <container_name> npm run test:e2e
